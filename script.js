@@ -6,7 +6,8 @@ const game={
     currentPlayer:0,
     prepareRemaining:0,
     lastTime:null,
-    paused:false
+    paused:false,
+    lastSecond:-1
 };
 const board =
     document.getElementById("board");
@@ -256,6 +257,26 @@ function updateTimer(now){
         }
         centerText.textContent =
         "▶ "+player.name+" のターン";
+        centerTimer.classList.remove(
+            "warning",
+            "danger"
+        );        
+        if(player.time<=3){      
+            centerTimer.classList.add(
+                "danger"
+            );     
+        }
+        else if(player.time<=10){   
+            centerTimer.classList.add(
+                "warning"
+            );
+        }
+        let second =
+            Math.ceil(player.time); 
+        if(second<=10&&second!==game.lastSecond){
+            game.lastSecond=second;
+            playWarningSound();
+        }
     }
 
     updatePlayerDisplay();
@@ -268,31 +289,48 @@ function updatePlayerDisplay(){
     .forEach((element,index)=>{
         if(!game.players[index])
             return;
-        if(!game.players[index].alive){
-            element
-                .querySelector(".time")
-                .textContent="LOSE";
-        }else{
-            element
-                .querySelector(".time")
-                .textContent 
-            =game.players[index]
-                .time
-                .toFixed(3);
+        const player =
+            game.players[index];
+        const timeElement =
+            element.querySelector(".time");
+        if(!player.alive){
+            timeElement.textContent =
+            "LOSE";
+            return;
+        }
+        timeElement.textContent =
+            player.time.toFixed(3);
+        // 色リセット
+        timeElement.classList.remove(
+            "warning",
+            "danger"
+        );
+        // 現在ターンのみ警告
+        if(index===game.currentPlayer ){
+            if(player.time<=3){
+                timeElement
+                .classList.add(
+                    "danger"
+                );
+            }else if(player.time<=10){
+                timeElement
+                .classList.add(
+                    "warning"
+                );
+            }
         }
         const button =
-        element.querySelector(".finishButton");
-        if(index===game.currentPlayer){
-            element.style.background="#0044aa";
+            element.querySelector(
+                ".finishButton"
+            );
+        if(index===game.currentPlayer&& !game.paused){
             button.disabled=false;
         }else{
-            element.style
-            .background="#222";
             button.disabled=true;
         }
     });
 }
-
+//ターン終了処理
 function finishTurn(){
     if(game.state!=="playing"||game.paused)
         return;
@@ -326,6 +364,7 @@ function timeOver(){
         nextPlayer();
     },1000);
 }
+//プレイヤー遷移
 function nextPlayer(){
     game.players[
         game.currentPlayer
@@ -363,21 +402,6 @@ function nextPlayer(){
         return;
     }
 }
-//時間切れ音声
-function playTimeOverSound(){
-    const ctx =
-        new AudioContext();
-    const osc =
-        ctx.createOscillator();
-    osc.frequency.value=880;
-    osc.connect(
-        ctx.destination
-    );
-    osc.start();
-    osc.stop(
-        ctx.currentTime+0.3
-    );
-}
 //一時停止処理
 pauseButton.onclick=()=>{
     if(game.state==="end")
@@ -402,6 +426,36 @@ pauseButton.onclick=()=>{
         performance.now();
     }
 };
+//時間切れ音声
+function playTimeOverSound(){
+    const ctx =
+        new AudioContext();
+    const osc =
+        ctx.createOscillator();
+    osc.frequency.value=880;
+    osc.connect(
+        ctx.destination
+    );
+    osc.start();
+    osc.stop(
+        ctx.currentTime+0.3
+    );
+}
+//警告音
+function playWarningSound(){
+    const ctx =
+        new AudioContext();
+    const osc =
+        ctx.createOscillator();
+    osc.frequency.value=440;
+    osc.connect(
+        ctx.destination
+    );
+    osc.start();
+    osc.stop(
+        ctx.currentTime+0.1
+    );
+}
 // 初期表示
 createNameInputs(
     Number(playerCount.value)
