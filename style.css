@@ -214,7 +214,7 @@ button{
 
 /* 座席位置 */
     .seat-top{
-        top:1vh;
+        top:3vh;
         left:50%;
         transform:
             translateX(-50%)
@@ -228,7 +228,7 @@ button{
         rotate(-90deg);
     }
     .seat-bottom{
-        bottom:1vh;
+        bottom:3vh;
         left:50%;
         transform:
         translateX(-50%);
@@ -315,8 +315,44 @@ button{
             opacity:1;
         }
     }
-
-
+.timeOut{
+    background:#ff0000 !important;
+    color:white;
+    animation:
+        timeOutFlash .2s 4,
+        shake .5s;
+}
+    @keyframes timeOutFlash{
+        0%{
+            background:#ff0000;
+        }
+        50%{
+            background:white;
+        }
+        100%{
+            background:#ff0000;
+        }
+    }
+    @keyframes shake{
+        0%{
+            transform:translateX(0);
+        }
+        20%{
+            transform:translateX(-8px);
+        }
+        40%{
+            transform:translateX(8px);
+        }
+        60%{
+            transform:translateX(-8px);
+        }
+        80%{
+            transform:translateX(8px);
+        }
+        100%{
+            transform:translateX(0);
+        }
+    }
 @media(max-height:800px){
     .seat{
         height:14vh;
