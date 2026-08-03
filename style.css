@@ -150,7 +150,7 @@ border:none;
 
 .seat-top{
 
-top:2vh;
+top:1vh;
 
 left:50%;
 
@@ -164,9 +164,9 @@ rotate(180deg);
 
 .seat-right{
 
-right:2vh;
+right:3vh;
 
-top:47%;
+top:44%;
 
 transform:
 translateY(-50%)
@@ -191,9 +191,9 @@ translateX(-50%);
 
 .seat-left{
 
-left:1vh;
+left:3vh;
 
-top:47%;
+top:44%;
 
 transform:
 translateY(-50%)
@@ -203,7 +203,7 @@ rotate(90deg);
 
 .seat-topRight{
 
-top:14%;
+top:13%;
 
 right:18%;
 
@@ -215,7 +215,7 @@ rotate(-135deg);
 
 .seat-topLeft{
 
-top:14%;
+top:13%;
 
 left:18%;
 
@@ -227,7 +227,7 @@ rotate(135deg);
 
 .seat-bottomRight{
 
-bottom:20%;
+bottom:24%;
 
 right:18%;
 
@@ -239,7 +239,7 @@ rotate(-45deg);
 
 .seat-bottomLeft{
 
-bottom:20%;
+bottom:24%;
 
 left:18%;
 
