@@ -187,15 +187,17 @@ function createTimerSeats(){
             div.className =
             "seat seat-"+player.seat;
             div.innerHTML=`
-                <div class="name">
-                    ${player.name}
+                <div class="seatContent">
+                    <div class="name">
+                        ${player.name}
+                    </div>
+                    <div class="time">
+                        ${player.time.toFixed(3)}
+                    </div>
+                    <button class="finishButton">
+                        END
+                    </button>
                 </div>
-                <div class="time">
-                    ${player.time.toFixed(3)}
-                </div>
-                <button class="finishButton">
-                    終了
-                </button>
             `;
             board.appendChild(div);
             const button =
