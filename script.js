@@ -289,6 +289,8 @@ function updatePlayerDisplay(){
         }
     });
 }
-// 初期表示
 
-createNameInputs(4);
+// 初期表示
+createNameInputs(
+    Number(playerCount.value)
+);
