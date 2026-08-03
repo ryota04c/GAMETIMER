@@ -115,9 +115,58 @@ const rotations = {
 };
 
 
+const settingBoard =
+    document.getElementById("settingBoard");
 
 
 
+function createNameInputs(count){
+
+
+    settingBoard.innerHTML="";
+
+
+    let seats =
+        seatLayouts[count];
+
+
+
+    seats.forEach(
+        (seat,index)=>{
+
+
+            let div =
+            document.createElement("div");
+
+
+
+            div.className =
+            "settingSeat setting-"+seat;
+
+
+
+            div.innerHTML=`
+
+                <div>
+                    Player${index+1}
+                </div>
+
+
+                <input
+                class="nameInput"
+                value="Player${index+1}">
+
+            `;
+
+
+
+            settingBoard.appendChild(div);
+
+
+        }
+    );
+
+}
 
 function createSeats(count){
 
@@ -188,9 +237,11 @@ function createSeats(count){
 playerCount.onchange=()=>{
 
 
-    createSeats(
-        Number(playerCount.value)
-    );
+    let count =
+    Number(playerCount.value);
+
+
+    createNameInputs(count);
 
 
 };
@@ -201,4 +252,4 @@ playerCount.onchange=()=>{
 
 // 初期表示
 
-createSeats(4);
+createNameInputs(4);
