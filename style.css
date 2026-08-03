@@ -315,7 +315,7 @@ button{
             opacity:1;
         }
     }
-.timeOut{
+.timeOut.seatContent{
     background:#ff0000 !important;
     color:white;
     animation:
