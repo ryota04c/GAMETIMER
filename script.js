@@ -143,15 +143,6 @@ function createSeats(count){
             div.className =
                 "seat seat-"+seat;
 
-
-
-            div.style.transform =
-                `
-                rotate(${rotations[seat]}deg)
-                `;
-
-
-
             div.innerHTML = `
 
 
