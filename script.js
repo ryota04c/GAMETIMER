@@ -242,9 +242,14 @@ function updateTimer(now){
         }
         if(game.prepareRemaining<=0){
             game.prepareRemaining=0;
+            // 開始音
+            playStartSound();
             game.state="playing";
             game.currentPlayer=0;
             game.players[0].running=true;
+            centerText.textContent =
+             "▶ "+game.players[0].name+" のターン";
+            centerTimer.textContent="";
             game.lastPrepareSecond=-1;
         }
         centerTimer.textContent =
@@ -451,6 +456,30 @@ function playWarningSound(){
     osc.start();
     osc.stop(
         ctx.currentTime+0.1
+    );
+}
+//開始音
+function playStartSound(){
+    const ctx =
+        new AudioContext();
+    const osc =
+        ctx.createOscillator();
+    const gain =
+    ctx.createGain();
+    osc.type="square";
+    osc.frequency.value=880;
+    osc.connect(gain);
+    gain.connect(
+        ctx.destination
+    );
+    gain.gain.value=0.3;
+    osc.start();
+    osc.frequency.exponentialRampToValueAtTime(
+        1320,
+        ctx.currentTime+0.2
+    );
+    osc.stop(
+        ctx.currentTime+0.4
     );
 }
 // 初期表示
