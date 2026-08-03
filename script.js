@@ -240,8 +240,10 @@ function updateTimer(now){
         if(player.running){
             player.time
             -=delta/1000;
-            if(player.time<0)
+            if(player.time<0){
                 player.time=0;
+                timeOver();
+            }
         }
         centerText.textContent =
         "▶ "+player.name+" のターン";
@@ -277,19 +279,46 @@ function updatePlayerDisplay(){
 }
 
 function finishTurn(){
-    if(game.state!=="playing")return;
-    // 現在の人を停止
+    if(game.state!=="playing")
+        return;
+    nextPlayer();
+}
+//時間切れ処理
+function timeOver(){
+    let player =
+    game.players[
+        game.currentPlayer
+    ];
+    player.running=false;
+    // 赤点滅
+    let element =
+    document
+    .querySelectorAll(".seat")
+    [
+        game.currentPlayer
+    ];
+    element.classList.add(
+        "timeOver"
+    );
+    // 効果音
+    playTimeOverSound();
+    // 少し待って次へ
+    setTimeout(()=>{
+        element.classList.remove(
+            "timeOver"
+        );
+        nextPlayer();
+    },1000);
+}
+function nextPlayer(){
     game.players[
         game.currentPlayer
     ]
     .running=false;
-    // 次へ
     game.currentPlayer++;
-    // 最後まで行ったら戻る
-    if( game.currentPlayer >=game.players.length){
+   if(game.currentPlayer >=game.players.length){
         game.currentPlayer=0;
     }
-    // 次の人開始
     game.players[
         game.currentPlayer
     ]
