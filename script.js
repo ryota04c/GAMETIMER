@@ -175,7 +175,7 @@ startButton.onclick=()=>{
 function createTimerSeats(){
     board.innerHTML="";
     game.players.forEach(
-        (player)=>{
+        (player,index)=>{
             let div =
             document.createElement("div");
             div.className =
@@ -192,9 +192,12 @@ function createTimerSeats(){
                 </button>
             `;
             board.appendChild(div);
-            div
-                .querySelector(".finishButton")
-                .onclick=()=>{  
+            const button =
+                div.querySelector(".finishButton");         
+                button.onclick=()=>{                            
+                    if(index !== game.currentPlayer){
+                        return;
+                    }
                     finishTurn();
                 };
         }
@@ -260,12 +263,15 @@ function updatePlayerDisplay(){
         game.players[index]
         .time
         .toFixed(3);
+        const button =
+        element.querySelector(".finishButton");
         if(index===game.currentPlayer){
-            element.style
-            .background="#0044aa";
+            element.style.background="#0044aa";
+            button.disabled=false;
         }else{
             element.style
             .background="#222";
+            button.disabled=true;
         }
     });
 }
