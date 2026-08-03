@@ -117,8 +117,6 @@ rotate(180deg);
 
 }
 
-
-
 .setting-right{
 
 right:4vh;
@@ -215,7 +213,17 @@ height:100%;
 position:relative;
 
 }
+#timerScreen{
 
+display:none;
+
+width:100vw;
+
+height:100vh;
+
+position:relative;
+
+}
 
 
 /* 中央 */
@@ -230,7 +238,7 @@ left:50%;
 
 transform:
 translate(-50%,-50%)
-rotate(180deg);
+rotate(0deg);
 
 text-align:center;
 
