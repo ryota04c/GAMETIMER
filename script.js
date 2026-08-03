@@ -20,7 +20,12 @@ presetSelect.addEventListener(
 
             PRESETS[
                 presetSelect.value
-            ]
+            ];
+             prepareInput.value=preset.preparation;
+
+            timeInput.value=preset.playerTime;
+        
+            playerInput.value=preset.players;
 
         );
 
@@ -50,7 +55,10 @@ const pauseButton =
 const resetButton =
     document.getElementById("reset");
 
-
+const presetSelect=document.getElementById("presetSelect");
+const prepareInput=document.getElementById("prepareInput");
+const timeInput=document.getElementById("timeInput");
+const playerInput=document.getElementById("playerInput");
 
 
 
