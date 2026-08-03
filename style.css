@@ -129,7 +129,12 @@ body{
     text-align:center;
 }
 #centerText{
-    font-size:2rem;
+    font-size:3rem;
+    font-weight:bold;
+    letter-spacing:3px;
+    color:white;
+    text-align:center;
+    transition:all .25s;
 }
 #centerTimer{
     font-size:4.5rem;
@@ -174,8 +179,21 @@ button{
     color:white;
     border:none;
 }
+.finishButton{
+    background:#444;
+    color:#888;
+    opacity:.4;
+    transition:.2s;
+}
 .finishButton:disabled{
     opacity:0.3;
+}
+.finishButton.active{
+    background:#00bfff;
+    color:white;
+    opacity:1;
+    box-shadow:0 0 15px #00bfff;
+    transform:scale(1.08);
 }
 .currentTurn{
     transform:scale(1.1);
@@ -274,6 +292,24 @@ button{
             opacity:1;
         }
     }
+.turnAnimation{
+    animation:turnPop .3s;
+}
+    @keyframes turnPop{
+        0%{
+            transform:scale(.8);
+            opacity:0;
+        }
+        70%{
+            transform:scale(1.1);
+        }
+        100%{
+            transform:scale(1);
+            opacity:1;
+        }
+    }
+
+
 @media(max-height:800px){
     .seat{
         height:14vh;
