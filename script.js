@@ -5,7 +5,8 @@ const game={
     state:"prepare",
     currentPlayer:0,
     prepareRemaining:0,
-    lastTime:null
+    lastTime:null,
+    paused:false
 };
 const board =
     document.getElementById("board");
@@ -15,6 +16,8 @@ const prepareTime =
     document.getElementById("prepareTime");
 const playerTime =
     document.getElementById("playerTime");
+const pauseButton =
+    document.getElementById("pauseButton");
 
 // 座席配置
 const seatLayouts = {   
@@ -215,6 +218,11 @@ function startPrepareTimer(){
     requestAnimationFrame(updateTimer);
 }
 function updateTimer(now){
+    if(game.paused){
+        game.lastTime=now;
+        requestAnimationFrame(updateTimer);
+        return;
+    }
     let delta =
     now-game.lastTime;
     game.lastTime=now;
@@ -286,7 +294,7 @@ function updatePlayerDisplay(){
 }
 
 function finishTurn(){
-    if(game.state!=="playing")
+    if(game.state!=="playing"||game.paused)
         return;
     nextPlayer();
 }
@@ -370,6 +378,30 @@ function playTimeOverSound(){
         ctx.currentTime+0.3
     );
 }
+//一時停止処理
+pauseButton.onclick=()=>{
+    if(game.state==="end")
+        return;
+    game.paused =
+    !game.paused;
+    if(game.paused){
+        pauseButton.textContent =
+        "再開";
+        centerText.textContent =
+        "一時停止";
+    }else{
+        pauseButton.textContent =
+        "一時停止";
+        centerText.textContent =
+        "▶ "+
+        game.players[
+            game.currentPlayer
+        ].name+
+        " のターン";
+        game.lastTime =
+        performance.now();
+    }
+};
 // 初期表示
 createNameInputs(
     Number(playerCount.value)
