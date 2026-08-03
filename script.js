@@ -5,32 +5,22 @@ let game =
         PRESETS.daifugo
     );
 
-const presetSelect =
-    document.getElementById(
-        "presetSelect"
-    );
+const presetSelect=document.getElementById("presetSelect");
+const prepareInput=document.getElementById("prepareInput");
+const timeInput=document.getElementById("timeInput");
+const playerInput=document.getElementById("playerInput");
 
+presetSelect.addEventListener("change",()=>{
 
+    const preset=PRESETS[presetSelect.value];
 
-presetSelect.addEventListener(
-    "change",
-    ()=>{
+    prepareInput.value=preset.preparation;
 
-        game = new GameManager(
+    timeInput.value=preset.playerTime;
 
-            PRESETS[
-                presetSelect.value
-            ];
-             prepareInput.value=preset.preparation;
+    playerInput.value=preset.players;
 
-            timeInput.value=preset.playerTime;
-        
-            playerInput.value=preset.players;
-
-        );
-
-    }
-);
+});
 
 
 // HTML取得
@@ -55,24 +45,26 @@ const pauseButton =
 const resetButton =
     document.getElementById("reset");
 
-const presetSelect=document.getElementById("presetSelect");
-const prepareInput=document.getElementById("prepareInput");
-const timeInput=document.getElementById("timeInput");
-const playerInput=document.getElementById("playerInput");
 
 
 
 // 開始ボタン
 
-startButton.addEventListener(
-    "click",
-    ()=>{
+startButton.addEventListener("click",()=>{
 
-        game.start();
+    game=new GameManager({
 
-    }
-);
+        preparation:Number(prepareInput.value),
 
+        playerTime:Number(timeInput.value),
+
+        players:Number(playerInput.value)
+
+    });
+
+    game.start();
+
+});
 
 
 
