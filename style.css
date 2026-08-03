@@ -149,7 +149,7 @@ border:none;
 
 .seat-top{
 
-top:2vh;
+top:1vh;
 
 left:50%;
 
@@ -163,7 +163,7 @@ rotate(180deg);
 
 .seat-right{
 
-right:2vh;
+right:1vh;
 
 top:50%;
 
@@ -190,7 +190,7 @@ translateX(-50%);
 
 .seat-left{
 
-left:2vh;
+left:1vh;
 
 top:50%;
 
