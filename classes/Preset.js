@@ -18,7 +18,7 @@ const PRESETS = {
 
         name:"UNO",
 
-        preparation:5,
+        preparation:10,
 
         playerTime:20,
 
