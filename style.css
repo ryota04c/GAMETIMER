@@ -42,7 +42,37 @@ body {
 
 }
 
+.setting{
 
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.setting input{
+
+    width:90px;
+
+    font-size:1.3rem;
+
+    text-align:center;
+
+}
+
+.setting select{
+
+    font-size:1.3rem;
+
+}
 
 /* 中央タイマー */
 
