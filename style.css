@@ -48,7 +48,7 @@ position:relative;
 
 position:absolute;
 
-top:53%;
+top:47%;
 
 left:50%;
 
@@ -166,7 +166,7 @@ rotate(180deg);
 
 right:2vh;
 
-top:53%;
+top:47%;
 
 transform:
 translateY(-50%)
@@ -193,7 +193,7 @@ translateX(-50%);
 
 left:1vh;
 
-top:53%;
+top:47%;
 
 transform:
 translateY(-50%)
