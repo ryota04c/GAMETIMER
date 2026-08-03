@@ -243,6 +243,26 @@ button{
             background:#aa0000;
         }
     }
+/* 残り時間警告 */
+.warning{
+    color:#ffaa00;
+}
+.danger{
+    color:red;
+    animation:
+    timerBlink 0.5s infinite;
+}
+    @keyframes timerBlink{
+        0%{
+            opacity:1;
+        }
+      　50%{
+            opacity:0.2;
+        }
+        100%{
+            opacity:1;
+        }
+    }
 @media(max-height:800px){
     .seat{
         height:14vh;
