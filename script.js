@@ -7,7 +7,8 @@ const game={
     prepareRemaining:0,
     lastTime:null,
     paused:false,
-    lastSecond:-1
+    lastSecond:-1,
+    lastPrepareSecond:-1
 };
 const board =
     document.getElementById("board");
@@ -231,11 +232,20 @@ function updateTimer(now){
     if(game.state==="prepare"){
         game.prepareRemaining
         -=delta;
+        let second =
+        Math.ceil(
+            game.prepareRemaining / 1000
+        );
+        if(second <= 5&&second > 0&&second !== game.lastPrepareSecond){
+            game.lastPrepareSecond = second;
+            playWarningSound();
+        }
         if(game.prepareRemaining<=0){
             game.prepareRemaining=0;
             game.state="playing";
             game.currentPlayer=0;
             game.players[0].running=true;
+            game.lastPrepareSecond=-1;
         }
         centerTimer.textContent =
         (game.prepareRemaining/1000)
@@ -256,21 +266,8 @@ function updateTimer(now){
             }
         }
         centerText.textContent =
-        "▶ "+player.name+" のターン";
-        centerTimer.classList.remove(
-            "warning",
-            "danger"
-        );        
-        if(player.time<=3){      
-            centerTimer.classList.add(
-                "danger"
-            );     
-        }
-        else if(player.time<=10){   
-            centerTimer.classList.add(
-                "warning"
-            );
-        }
+            "▶ "+player.name+" のターン";
+        centerTimer.textContent = "";
         let second =
             Math.ceil(player.time); 
         if(second<=10&&second!==game.lastSecond){
