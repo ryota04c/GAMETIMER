@@ -1,28 +1,47 @@
 class GameManager {
 
+       constructor(preset){
 
-    constructor(){
-
-
-        // 準備時間
-        this.prepareTimer =
-            new Timer(10);
-
-
-
-        // プレイヤー設定
-        this.players = [
-
-            new Player("Player1",30),
-
-            new Player("Player2",30),
-
-            new Player("Player3",30),
-
-            new Player("Player4",30)
-
-        ];
-
+            this.preset = preset;
+        
+            this.prepareTimer =
+                new Timer(
+                    preset.preparation
+                );
+        
+        
+        
+            this.players=[];
+        
+        
+        
+            for(
+                let i=0;
+                i<preset.players;
+                i++
+            ){
+        
+                this.players.push(
+        
+                    new Player(
+        
+                        "Player"+(i+1),
+        
+                        preset.playerTime
+        
+                    )
+        
+                );
+        
+            }
+        
+        
+        
+            this.currentPlayer=0;
+        
+            this.state="READY";
+        
+        }
 
 
         // 現在のプレイヤー番号
@@ -34,44 +53,6 @@ class GameManager {
         // 状態
 
         this.state = "READY";
-
-
-    }
-
-
-
-
-
-    // ゲーム開始
-
-    start(){
-
-
-        if(this.state === "READY"){
-
-
-            this.state = "PREPARATION";
-
-
-            this.prepareTimer.start();
-
-
-        }
-
-
-        else if(this.state === "PAUSE"){
-
-
-            this.resume();
-
-
-        }
-
-
-    }
-
-
-
 
 
     // 更新
