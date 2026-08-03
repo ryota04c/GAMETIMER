@@ -7,12 +7,14 @@ const game={
     prepareRemaining:0,
     lastTime:null
 };
-
 const board =
     document.getElementById("board");
-
 const playerCount =
     document.getElementById("playerCount");
+const prepareTime =
+    document.getElementById("prepareTime");
+const playerTime =
+    document.getElementById("playerTime");
 
 // 座席配置
 const seatLayouts = {   
@@ -66,13 +68,7 @@ const seatLayouts = {
         "topLeft"
     ]
 };
-
-
-
-
-
 // 回転
-
 const rotations = {
     top:180,
     topRight:-135,
@@ -83,8 +79,6 @@ const rotations = {
     left:90,
     topLeft:135
 };
-
-
 const settingBoard =
     document.getElementById("settingBoard");
 
