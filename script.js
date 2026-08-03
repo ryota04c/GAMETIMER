@@ -334,10 +334,18 @@ function updatePlayerDisplay(){
             element.querySelector(
                 ".finishButton"
             );
-        if(index===game.currentPlayer&& !game.paused){
+        if(
+            index===game.currentPlayer &&
+            game.state==="playing" &&
+            !game.paused
+        ){
             button.disabled=false;
+            button.classList.add("active");
+        
         }else{
             button.disabled=true;
+            button.classList.remove("active");
+        
         }
     });
 }
@@ -399,6 +407,7 @@ function nextPlayer(){
     game.players[
         game.currentPlayer
     ].running=true;
+    //プレイヤー残数検知
     const alivePlayers =
     game.players.filter(
         p=>p.alive
@@ -411,6 +420,18 @@ function nextPlayer(){
         centerTimer.textContent =
         "GAME END";
         return;
+        // アニメーション
+        centerText.classList.remove("turnAnimation");
+        void centerText.offsetWidth;   // アニメーションをリセット
+        centerText.classList.add("turnAnimation");
+    }else{
+        // 中央表示更新
+        centerText.textContent =
+            "▶ " + game.players[game.currentPlayer].name + " TURN";
+        // アニメーション
+        centerText.classList.remove("turnAnimation");
+        void centerText.offsetWidth;   // アニメーションをリセット
+        centerText.classList.add("turnAnimation");
     }
 }
 //一時停止処理
