@@ -44,7 +44,8 @@ const playerTimeInput =
 const playerCountInput =
     document.getElementById("playerCount");
 
-
+const nameInputs =
+    document.querySelectorAll(".playerNameInput");
 
 
 // ==============================
@@ -266,22 +267,24 @@ startButton.onclick=()=>{
 
 
 
-    for(let i=0;i<game.playerCount;i++){
-
-
+     for(let i=0;i<game.playerCount;i++){
+        let name =
+            nameInputs[i].value;
+    
+    
         game.players.push(
-
+    
             new Player(
-
-                "Player "+(i+1),
-
+    
+                name,
+    
                 game.playerTime
-
+    
             )
-
+    
         );
-
-
+    
+    
     }
 
 
