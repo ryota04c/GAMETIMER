@@ -125,7 +125,22 @@ select {
 
 }
 
+#nameSettings{
 
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.playerNameInput{
+
+    width:200px;
+
+}
 
 
 button {
