@@ -4,9 +4,9 @@ const PRESETS = {
 
         name:"大富豪",
 
-        preparation:10,
+        preparation:30,
 
-        playerTime:30,
+        playerTime:60,
 
         players:4
 
@@ -32,7 +32,7 @@ const PRESETS = {
 
         name:"カタン",
 
-        preparation:15,
+        preparation:30,
 
         playerTime:120,
 
