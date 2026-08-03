@@ -200,6 +200,40 @@ rotate(90deg);
 
 }
 
+.seat-topRight{
+
+top:15%;
+
+right:20%;
+
+}
+
+.seat-bottomRight{
+
+bottom:15%;
+
+right:20%;
+
+}
+
+
+.seat-bottomLeft{
+
+bottom:15%;
+
+left:20%;
+
+}
+
+
+.seat-topLeft{
+
+top:15%;
+
+left:20%;
+
+}
+
 @media(max-height:800px){
 
     .seat{
