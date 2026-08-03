@@ -71,7 +71,7 @@ font-size:2rem;
 
 #centerTimer{
 
-font-size:5rem;
+font-size:4.5rem;
 
 font-weight:bold;
 
@@ -197,5 +197,29 @@ top:50%;
 transform:
 translateY(-50%)
 rotate(90deg);
+
+}
+
+@media(max-height:800px){
+
+    .seat{
+
+        height:14vh;
+
+    }
+
+
+    .time{
+
+        font-size:2.5rem;
+
+    }
+
+
+    button{
+
+        padding:6px 25px;
+
+    }
 
 }
