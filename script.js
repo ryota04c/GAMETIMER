@@ -1,3 +1,13 @@
+const game = {
+
+    players: [],
+
+    playerTime: 30,
+
+    prepareTime: 10
+
+};
+
 const board =
     document.getElementById("board");
 
