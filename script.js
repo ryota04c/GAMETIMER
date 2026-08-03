@@ -324,6 +324,21 @@ function nextPlayer(){
     ]
     .running=true;
 }
+//時間切れ音声
+function playTimeOverSound(){
+    const ctx =
+        new AudioContext();
+    const osc =
+        ctx.createOscillator();
+    osc.frequency.value=880;
+    osc.connect(
+        ctx.destination
+    );
+    osc.start();
+    osc.stop(
+        ctx.currentTime+0.3
+    );
+}
 // 初期表示
 createNameInputs(
     Number(playerCount.value)
