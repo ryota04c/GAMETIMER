@@ -103,7 +103,6 @@ function createNameInputs(count){
             settingBoard.appendChild(div);
         }
     );
-
 }
 
 function createSeats(count){
@@ -129,15 +128,8 @@ function createSeats(count){
             `;
             board.appendChild(div);
         }
-
     );
-
-
 }
-
-
-
-
 
 playerCount.onchange=()=>{
     let count =
@@ -149,21 +141,13 @@ const startButton =
 document.getElementById("startGame");
 
 startButton.onclick=()=>{
-
     let inputs =
     document.querySelectorAll(".nameInput");
-
     let seats =
-    seatLayouts[
-        Number(playerCount.value)
-    ];
+    seatLayouts[Number(playerCount.value)];
     game.players=[];
-
-
     seats.forEach(
         (seat,index)=>{
-
-
             game.players.push({
                 seat:seat,
                 name:inputs[index].value,        
@@ -171,15 +155,10 @@ startButton.onclick=()=>{
                 Number(playerTime.value),                    
                 running:false
             });
-
-
         }
     );
     game.prepareTime =
     Number(prepareTime.value);
-
-
-
     // 設定画面非表示
     document
     .getElementById("settingScreen")
@@ -208,14 +187,20 @@ function createTimerSeats(){
                 <div class="time">
                     ${player.time.toFixed(3)}
                 </div>
-                <button>
+                <button class="finishButton">
                     終了
                 </button>
             `;
             board.appendChild(div);
+            div
+                .querySelector(".finishButton")
+                .onclick=()=>{  
+                    finishTurn();
+                };
         }
     );
 }
+
 //タイマー処理
 function startPrepareTimer(){
     game.state="prepare";
@@ -256,12 +241,13 @@ function updateTimer(now){
                 player.time=0;
         }
         centerText.textContent =
-        player.name+" のターン";
+        "▶ "+player.name+" のターン";
     }
 
     updatePlayerDisplay();
     requestAnimationFrame(updateTimer);
 }
+
 function updatePlayerDisplay(){
     document
     .querySelectorAll(".seat")
@@ -284,6 +270,25 @@ function updatePlayerDisplay(){
     });
 }
 
+function finishTurn(){
+    if(game.state!=="playing")return;
+    // 現在の人を停止
+    game.players[
+        game.currentPlayer
+    ]
+    .running=false;
+    // 次へ
+    game.currentPlayer++;
+    // 最後まで行ったら戻る
+    if( game.currentPlayer >=game.players.length){
+        game.currentPlayer=0;
+    }
+    // 次の人開始
+    game.players[
+        game.currentPlayer
+    ]
+    .running=true;
+}
 // 初期表示
 createNameInputs(
     Number(playerCount.value)
