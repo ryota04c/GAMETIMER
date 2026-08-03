@@ -14,6 +14,7 @@ const playerCount =
 const seatLayouts = {
 
 
+    
     2:[
         "top",
         "bottom"
