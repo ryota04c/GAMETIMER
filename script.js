@@ -295,8 +295,11 @@ function updatePlayerDisplay(){
             element.querySelector(".time");
         if(!player.alive){
             timeElement.textContent =
-            "LOSE";
+            "時間切れ‼";
+            element.classList.add("eliminated");
             return;
+        }else{
+            element.classList.remove("eliminated");
         }
         timeElement.textContent =
             player.time.toFixed(3);
@@ -306,7 +309,7 @@ function updatePlayerDisplay(){
             "danger"
         );
         // 現在ターンのみ警告
-        if(index===game.currentPlayer ){
+        if(index===game.currentPlayer&&player.alive ){
             if(game.state === "playing"){
                 element.classList.add(
                     "currentTurn"
