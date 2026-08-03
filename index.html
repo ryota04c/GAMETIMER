@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>大富豪タイマー</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- =============================
+            設定画面
+    ============================== -->
+
+    <div id="settingScreen" class="screen">
+
+        <h1>🎴 大富豪タイマー</h1>
+
+        <div class="settingBox">
+
+            <label>
+
+                ゲーム
+
+                <select id="preset">
+
+                    <option value="daifugo">
+
+                        大富豪
+
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <label>
+
+                準備時間（秒）
+
+                <input
+                    type="number"
+                    id="prepareTime"
+                    value="10"
+                    min="0"
+                    step="0.001">
+
+            </label>
+
+
+            <label>
+
+                持ち時間（秒）
+
+                <input
+                    type="number"
+                    id="playerTime"
+                    value="30"
+                    min="1"
+                    step="0.001">
+
+            </label>
+
+
+            <label>
+
+                プレイヤー人数
+
+                <select id="playerCount">
+
+                    <option>2</option>
+                    <option>3</option>
+                    <option selected>4</option>
+                    <option>5</option>
+                    <option>6</option>
+
+                </select>
+
+            </label>
+
+
+            <button id="startGame">
+
+                ゲーム開始
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- =============================
+            タイマー画面
+    ============================== -->
+
+    <div id="timerScreen" class="screen">
+
+        <div class="center">
+
+            <div class="title">
+
+                準備時間
+
+            </div>
+
+            <div id="centerTimer">
+
+                10.000
+
+            </div>
+
+        </div>
+
+
+
+        <div id="players">
+
+            <!-- JavaScriptで生成 -->
+
+        </div>
+
+
+
+        <div class="bottomButtons">
+
+            <button id="pauseButton">
+
+                一時停止
+
+            </button>
+
+            <button id="resetButton">
+
+                リセット
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

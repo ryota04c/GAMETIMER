@@ -1,0 +1,368 @@
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+    margin: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #111;
+
+    color: white;
+
+    font-family:
+
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+}
+
+
+
+
+/* =====================
+    画面共通
+===================== */
+
+
+.screen {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+
+
+/* =====================
+    設定画面
+===================== */
+
+
+h1 {
+
+    font-size: 3rem;
+
+    margin-bottom: 40px;
+
+}
+
+
+
+.settingBox {
+
+    width: 70%;
+
+    max-width: 600px;
+
+    background: #222;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+}
+
+
+
+.settingBox label {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 1.8rem;
+
+}
+
+
+
+input,
+select {
+
+    width: 180px;
+
+    font-size: 1.8rem;
+
+    padding: 8px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+}
+
+
+
+
+button {
+
+    border: none;
+
+    border-radius: 20px;
+
+    font-size: 2rem;
+
+    padding: 20px;
+
+    background: #333;
+
+    color:white;
+
+}
+
+
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+
+
+
+#startGame {
+
+    margin-top:20px;
+
+    background:#0066ff;
+
+}
+
+
+
+
+
+/* =====================
+    タイマー画面
+===================== */
+
+
+#timerScreen {
+
+    justify-content: space-between;
+
+    padding:30px;
+
+}
+
+
+
+
+.center {
+
+    text-align:center;
+
+}
+
+
+
+.title {
+
+    font-size:2rem;
+
+}
+
+
+
+#centerTimer {
+
+
+    font-size:6rem;
+
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+}
+
+
+
+
+
+/* =====================
+    プレイヤー
+===================== */
+
+
+#players {
+
+    width:100%;
+
+    flex:1;
+
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    grid-template-rows:1fr 1fr;
+
+    gap:20px;
+
+}
+
+
+
+.player {
+
+
+    background:#222;
+
+    border-radius:25px;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+}
+
+
+
+.player.active {
+
+
+    background:#003d99;
+
+
+    box-shadow:
+
+    0 0 30px #0066ff;
+
+}
+
+
+
+
+.playerName {
+
+
+    font-size:2rem;
+
+}
+
+
+
+
+.playerTime {
+
+
+    font-size:4rem;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+.finishButton {
+
+
+    width:70%;
+
+    height:70px;
+
+
+    margin-top:20px;
+
+
+    background:#444;
+
+}
+
+
+
+
+
+/* =====================
+    下ボタン
+===================== */
+
+
+.bottomButtons {
+
+
+    display:flex;
+
+    gap:30px;
+
+    margin-top:20px;
+
+}
+
+
+
+.bottomButtons button {
+
+
+    width:250px;
+
+}
+
+
+
+
+
+/* スマホ・縦画面対応 */
+
+@media(max-width:700px){
+
+
+    #centerTimer{
+
+        font-size:4rem;
+
+    }
+
+
+    .playerTime{
+
+        font-size:2.5rem;
+
+    }
+
+
+}
