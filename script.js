@@ -309,6 +309,11 @@ function updatePlayerDisplay(){
         );
         // 現在ターンのみ警告
         if(index===game.currentPlayer ){
+            if(game.state === "playing"){
+                element.classList.add(
+                    "currentTurn"
+                );
+            }
             if(player.time<=3){
                 timeElement
                 .classList.add(
@@ -320,6 +325,10 @@ function updatePlayerDisplay(){
                     "warning"
                 );
             }
+        }else{
+             element.classList.remove(
+                "currentTurn"
+            );
         }
         const button =
             element.querySelector(
