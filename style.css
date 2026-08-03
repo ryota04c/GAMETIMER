@@ -85,9 +85,17 @@ font-weight:bold;
 
 position:absolute;
 
-width:240px;
+width:22vw;
 
-height:170px;
+height:16vh;
+
+min-width:180px;
+
+min-height:130px;
+
+max-width:240px;
+
+max-height:170px;
 
 background:#222;
 
@@ -141,7 +149,7 @@ border:none;
 
 .seat-top{
 
-top:30px;
+top:2vh;
 
 left:50%;
 
@@ -155,7 +163,7 @@ rotate(180deg);
 
 .seat-right{
 
-right:30px;
+right:2vh;
 
 top:50%;
 
@@ -169,7 +177,7 @@ rotate(-90deg);
 
 .seat-bottom{
 
-bottom:30px;
+bottom:5vh;
 
 left:50%;
 
@@ -182,7 +190,7 @@ translateX(-50%);
 
 .seat-left{
 
-left:30px;
+left:2vh;
 
 top:50%;
 
