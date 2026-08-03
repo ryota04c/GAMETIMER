@@ -294,8 +294,6 @@ function updatePlayerDisplay(){
         const timeElement =
             element.querySelector(".time");
         if(!player.alive){
-            timeElement.textContent =
-            "時間切れ‼";
             element.classList.add("eliminated");
             return;
         }else{
@@ -364,23 +362,30 @@ function timeOver(){
     ];
     player.running=false;
     player.alive=false;
-    // 赤点滅
-    let element =
-    document
-    .querySelectorAll(".seat")
+    const card =
+    document.querySelectorAll(".seat")
     [
         game.currentPlayer
     ];
-    element.classList.add(
-        "timeOver"
-    );
+    card.classList.add("timeOut");
+    
+    card
+        .querySelector(".time")
+        .textContent =
+    "TIME OUT";
     // 効果音
     playTimeOverSound();
     // 少し待って次へ
     setTimeout(()=>{
-        element.classList.remove(
-            "timeOver"
+        card.classList.remove(
+            "timeOut"
         );
+        card.classList.add(
+            "eliminated"
+        );
+        card
+        .querySelector(".time")
+        .textContent="LOSE";
         nextPlayer();
     },1000);
 }
