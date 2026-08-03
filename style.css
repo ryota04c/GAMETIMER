@@ -203,7 +203,14 @@ button{
     0 0 20px rgba(0,150,255,0.8);
     z-index:10;
 }
-
+.eliminated{
+    background:#8b0000 !important;
+    border:3px solid #ff4444;
+    color:white;
+    box-shadow:0 0 15px rgba(255,0,0,.5);
+    transform:scale(.95);
+    opacity:.8;
+}
 
 /* 座席位置 */
     .seat-top{
