@@ -153,7 +153,8 @@ startButton.onclick=()=>{
                 name:inputs[index].value,        
                 time:
                 Number(playerTime.value),                    
-                running:false
+                running:false,
+                alive:true
             });
         }
     );
@@ -259,12 +260,18 @@ function updatePlayerDisplay(){
     .forEach((element,index)=>{
         if(!game.players[index])
             return;
-        element
-        .querySelector(".time")
-        .textContent =
-        game.players[index]
-        .time
-        .toFixed(3);
+        if(!game.players[index].alive){
+            element
+                .querySelector(".time")
+                .textContent="LOSE";
+        }else{
+            element
+                .querySelector(".time")
+                .textContent 
+            =game.players[index]
+                .time
+                .toFixed(3);
+        }
         const button =
         element.querySelector(".finishButton");
         if(index===game.currentPlayer){
@@ -290,6 +297,7 @@ function timeOver(){
         game.currentPlayer
     ];
     player.running=false;
+    player.alive=false;
     // 赤点滅
     let element =
     document
@@ -313,16 +321,39 @@ function timeOver(){
 function nextPlayer(){
     game.players[
         game.currentPlayer
-    ]
-    .running=false;
-    game.currentPlayer++;
-   if(game.currentPlayer >=game.players.length){
-        game.currentPlayer=0;
+    ].running=false;
+    let count=0;
+    do{
+        game.currentPlayer++;
+        if(game.currentPlayer >= game.players.length){
+            game.currentPlayer=0;
+        }
+        count++;
     }
+    while(
+        !game.players[
+            game.currentPlayer
+        ].alive 
+        &&
+        count < game.players.length
+    );
+    // 残った人を開始
     game.players[
         game.currentPlayer
-    ]
-    .running=true;
+    ].running=true;
+    const alivePlayers =
+    game.players.filter(
+        p=>p.alive
+    );
+    if(alivePlayers.length===1){
+        game.state="end";
+        centerText.textContent =
+        alivePlayers[0].name+
+        " WIN";   
+        centerTimer.textContent =
+        "GAME END";
+        return;
+    }
 }
 //時間切れ音声
 function playTimeOverSound(){
