@@ -158,6 +158,9 @@ body{
     align-items:center;
     gap:10px;
     font-size:1.8rem;
+    transition:
+    transform 0.2s,
+    background 0.2s;
 }
 .time{
     font-size:3rem;
@@ -173,6 +176,14 @@ button{
 }
 .finishButton:disabled{
     opacity:0.3;
+}
+.currentTurn{
+    transform:scale(1.1);
+    background:#0044aa !important;
+    border:3px solid #66ccff;
+    box-shadow:
+    0 0 20px rgba(0,150,255,0.8);
+    z-index:10;
 }
 
 
