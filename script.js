@@ -247,8 +247,124 @@ playerCount.onchange=()=>{
 };
 
 
+const startButton =
+document.getElementById("startGame");
 
 
+
+startButton.onclick=()=>{
+
+    let inputs =
+    document.querySelectorAll(".nameInput");
+
+    let seats =
+    seatLayouts[
+        Number(playerCount.value)
+    ];
+
+
+    game.players=[];
+
+
+    seats.forEach(
+        (seat,index)=>{
+
+
+            game.players.push({
+
+                seat:
+                    seat,
+                name:
+                    inputs[index].value,
+                time:
+                    Number(playerTime.value)
+
+            });
+
+
+        }
+    );
+
+
+
+    game.prepareTime =
+    Number(prepareTime.value);
+
+
+
+    // 設定画面非表示
+
+    document
+    .getElementById("settingScreen")
+    .style.display="none";
+
+
+
+    // タイマー画面表示
+
+    document
+    .getElementById("timerScreen")
+    .style.display="block";
+
+
+
+    createTimerSeats();
+
+
+};
+
+function createTimerSeats(){
+
+
+    board.innerHTML="";
+
+
+    game.players.forEach(
+        (player)=>{
+
+
+            let div =
+            document.createElement("div");
+
+
+            div.className =
+            "seat seat-"+player.seat;
+
+
+
+            div.innerHTML=`
+
+                <div class="name">
+
+                    ${player.name}
+
+                </div>
+
+
+                <div class="time">
+
+                    ${player.time.toFixed(3)}
+
+                </div>
+
+
+                <button>
+
+                    終了
+
+                </button>
+
+
+            `;
+
+
+            board.appendChild(div);
+
+
+        }
+    );
+
+}
 
 // 初期表示
 
