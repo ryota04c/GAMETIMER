@@ -89,7 +89,7 @@ const settingBoard =
     document.getElementById("settingBoard");
 
 function createNameInputs(count){
-    settingBoard.innerHTML="",
+    settingBoard.innerHTML="";
     let seats =
         seatLayouts[count];
     seats.forEach(
