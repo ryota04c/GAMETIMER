@@ -3,198 +3,124 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>大富豪タイマー</title>
+<title>Board Timer</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
-    <!-- =============================
-            設定画面
-    ============================== -->
 
-    <div id="settingScreen" class="screen">
-
-        <h1> ゲームタイマー</h1>
-
-        <div class="settingBox">
-
-            <label>
-
-                ゲーム
-
-                <select id="preset">
-
-                    <option value="daifugo">
-
-                        大富豪
-
-                    </option>
-
-                </select>
-
-            </label>
+<div id="app">
 
 
-            <label>
+    <!-- 中央表示 -->
 
-                準備時間（秒）
+    <div id="center">
 
-                <input
-                    type="number"
-                    id="prepareTime"
-                    value="10"
-                    min="0"
-                    step="0.001">
+        <div id="centerText">
+            準備時間
+        </div>
 
-            </label>
-
-
-            <label>
-
-                持ち時間（秒）
-
-                <input
-                    type="number"
-                    id="playerTime"
-                    value="30"
-                    min="1"
-                    step="0.001">
-
-            </label>
-
-
-            <label>
-
-                プレイヤー人数
-
-                <select id="playerCount">
-
-                    <option>2</option>
-                    <option>3</option>
-                    <option selected>4</option>
-                    <option>5</option>
-                    <option>6</option>
-
-                </select>
-
-            </label>
-
-            <div id="nameSettings">
-
-                <label>
-                    Player1
-                    <input
-                        type="text"
-                        class="playerNameInput"
-                        value="Player1">
-                </label>
-            
-            
-                <label>
-                    Player2
-                    <input
-                        type="text"
-                        class="playerNameInput"
-                        value="Player2">
-                </label>
-            
-            
-                <label>
-                    Player3
-                    <input
-                        type="text"
-                        class="playerNameInput"
-                        value="Player3">
-                </label>
-            
-            
-                <label>
-                    Player4
-                    <input
-                        type="text"
-                        class="playerNameInput"
-                        value="Player4">
-                </label>
-            
-            
-            </div>
-
-
-            <button id="startGame">
-
-                ゲーム開始
-
-            </button>
-
+        <div id="centerTimer">
+            10.000
         </div>
 
     </div>
 
 
 
+    <!-- 座席エリア -->
+
+    <div id="board">
 
 
-    <!-- =============================
-            タイマー画面
-    ============================== -->
+        <div class="seat seat-top">
 
-    <div id="timerScreen" class="screen">
-
-        <div class="center">
-
-            <div class="title">
-
-                準備時間
-
+            <div class="name">
+                Player1
             </div>
 
-            <div id="centerTimer">
-
-                10.000
-
+            <div class="time">
+                30.000
             </div>
 
-        </div>
-
-
-
-        <div id="players">
-
-            <!-- JavaScriptで生成 -->
-
-        </div>
-
-
-
-        <div class="bottomButtons">
-
-            <button id="pauseButton">
-
-                一時停止
-
-            </button>
-
-            <button id="resetButton">
-
-                リセット
-
+            <button>
+                終了
             </button>
 
         </div>
+
+
+
+        <div class="seat seat-right">
+
+            <div class="name">
+                Player2
+            </div>
+
+            <div class="time">
+                30.000
+            </div>
+
+            <button>
+                終了
+            </button>
+
+        </div>
+
+
+
+        <div class="seat seat-bottom">
+
+            <div class="name">
+                Player3
+            </div>
+
+            <div class="time">
+                30.000
+            </div>
+
+            <button>
+                終了
+            </button>
+
+        </div>
+
+
+
+        <div class="seat seat-left">
+
+            <div class="name">
+                Player4
+            </div>
+
+            <div class="time">
+                30.000
+            </div>
+
+            <button>
+                終了
+            </button>
+
+        </div>
+
+
 
     </div>
 
 
+</div>
 
-    <script src="script.js"></script>
+
+<script src="script.js"></script>
 
 </body>
 
