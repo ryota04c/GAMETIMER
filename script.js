@@ -1,7 +1,31 @@
 // ゲーム管理オブジェクト作成
 
-const game = new GameManager();
+let game =
+    new GameManager(
+        PRESETS.daifugo
+    );
 
+const presetSelect =
+    document.getElementById(
+        "presetSelect"
+    );
+
+
+
+presetSelect.addEventListener(
+    "change",
+    ()=>{
+
+        game = new GameManager(
+
+            PRESETS[
+                presetSelect.value
+            ]
+
+        );
+
+    }
+);
 
 
 // HTML取得
