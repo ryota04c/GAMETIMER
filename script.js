@@ -270,8 +270,6 @@ function updateTimer(now){
                 timeOver();
             }
         }
-        centerText.textContent =
-            "▶ "+player.name+" のターン";
         centerTimer.textContent = "";
         let second =
             Math.ceil(player.time); 
