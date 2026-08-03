@@ -1,457 +1,237 @@
 *{
-
 box-sizing:border-box;
-
 }
 
-
-body{
-
-    
-margin:0;
-
-width:100vw;
-
-height:100vh;
-
-background:#111;
-
-color:white;
-
-overflow:hidden;
-
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Helvetica Neue",
-sans-serif;
-
+body{   
+    margin:0;
+    width:100vw;
+    height:100vh;
+    background:#111;
+    color:white;
+    overflow:hidden;
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    sans-serif;
 }
 
 #settingScreen{
-
-width:100vw;
-
-height:100vh;
-
-position:relative;
-
+    width:100vw;
+    height:100vh;
+    position:relative;
 }
-
-
 #settingBoard{
-
-position:absolute;
-
-width:100%;
-
-height:100%;
-
+    position:absolute;
+    width:100%;
+    height:100%;
 }
-
-
-
 #settingCenter{
-
-position:absolute;
-
-top:50%;
-
-left:50%;
-
-transform:
-translate(-50%,-50%)
-rotate(0deg);
-
-text-align:center;
-
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:
+    translate(-50%,-50%)
+    rotate(0deg);
+    text-align:center;
 }
-
-
-
 .settingSeat{
-
-position:absolute;
-
-width:220px;
-
-height:130px;
-
-background:#222;
-
-border-radius:20px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-gap:10px;
-
+    position:absolute;
+    width:220px;
+    height:130px;
+    background:#222;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 }
-
-
 .settingSeat input{
-
-width:150px;
-
-font-size:1.5rem;
-
-text-align:center;
-
+    width:150px;
+    font-size:1.5rem;
+    text-align:center;
 }
 /* 座席位置 */
-
-.setting-top{
-
-top:1vh;
-
-left:50%;
-
-transform:
-translateX(-50%)
-rotate(180deg);
-
-}
-
-.setting-right{
-
-right:4vh;
-
-top:50%;
-
-transform:
-translateY(-50%)
-rotate(-90deg);
-
-}
-
-
-
-.setting-bottom{
-
-bottom:1vh;
-
-left:50%;
-
-transform:
-translateX(-50%);
-
-}
-
-
-
-.setting-left{
-
-left:4vh;
-
-top:50%;
-
-transform:
-translateY(-50%)
-rotate(90deg);
-
-}
-
-.setting-topRight{
-
-top:15%;
-
-right:18%;
-
-transform:
-rotate(-135deg);
-
-}
-
-
-.setting-topLeft{
-
-top:15%;
-
-left:18%;
-
-transform:
-rotate(135deg);
-
-}
-
-
-.setting-bottomRight{
-
-bottom:15%;
-
-right:18%;
-
-transform:
-rotate(-45deg);
-
-}
-
-
-.setting-bottomLeft{
-
-bottom:15%;
-
-left:18%;
-
-transform:
-rotate(45deg);
-
-}
+    .setting-top{
+        top:1vh;
+        left:50%;
+        transform:
+        translateX(-50%)
+        rotate(180deg);
+    }
+    .setting-right{
+        right:4vh;
+        top:50%;
+        transform:
+        translateY(-50%)
+        rotate(-90deg);
+    }
+    .setting-bottom{
+        bottom:1vh;
+        left:50%;
+        transform:
+        translateX(-50%);
+    }
+    .setting-left{
+        left:4vh;
+        top:50%;
+        transform:
+        translateY(-50%)
+        rotate(90deg);
+    }
+    .setting-topRight{
+        top:15%;
+        right:18%;
+        transform:
+        rotate(-135deg);
+    }
+    .setting-topLeft{
+        top:15%;
+        left:18%;
+        transform:
+        rotate(135deg);
+    }
+    .setting-bottomRight{
+        bottom:15%;
+        right:18%;
+        transform:
+        rotate(-45deg);
+    }
+    .setting-bottomLeft{
+        bottom:15%;
+        left:18%;
+        transform:
+        rotate(45deg);
+    }
 
 
 #app{
-
-width:100%;
-
-height:100%;
-
-position:relative;
-
+    width:100%;
+    height:100%;
+    position:relative;
 }
 #timerScreen{
-
-display:none;
-
-width:100vw;
-
-height:100vh;
-
-position:relative;
-
+    display:none;
+    width:100vw;
+    height:100vh;
+    position:relative;
 }
-
 
 /* 中央 */
-
 #center{
-
-position:absolute;
-
-top:50%;
-
-left:50%;
-
-transform:
-translate(-50%,-50%)
-rotate(0deg);
-
-text-align:center;
-
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:
+    translate(-50%,-50%)
+    rotate(0deg);
+    text-align:center;
 }
-
-
-
 #centerText{
-
-font-size:2rem;
-
+    font-size:2rem;
 }
-
-
-
 #centerTimer{
-
-font-size:4.5rem;
-
-font-weight:bold;
-
+    font-size:4.5rem;
+    font-weight:bold;
 }
-
-
 
 /* 座席共通 */
-
 .seat{
-
-position:absolute;
-
-width:22vw;
-
-height:16vh;
-
-min-width:180px;
-
-min-height:130px;
-
-max-width:240px;
-
-max-height:170px;
-
-background:#222;
-
-border-radius:25px;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-gap:10px;
-
-font-size:1.8rem;
-
+    position:absolute;
+    width:22vw;
+    height:16vh;
+    min-width:180px
+    min-height:130px;
+    max-width:240px;
+    max-height:170px;
+    background:#222;
+    border-radius:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    font-size:1.8rem;
 }
-
-
-
 .time{
-
-font-size:3rem;
-
-font-weight:bold;
-
+    font-size:3rem;
+    font-weight:bold;
 }
-
-
-
 button{
-
-font-size:1.3rem;
-
-padding:10px 40px;
-
-border-radius:15px;
-
-background:#333;
-
-color:white;
-
-border:none;
-
+    font-size:1.3rem;
+    padding:10px 40px;
+    border-radius:15px;
+    background:#333;
+    color:white;
+    border:none;
 }
-
+.finishButton:disabled{
+    opacity:0.3;
+}
 
 
 /* 座席位置 */
-
-.seat-top{
-
-top:1vh;
-
-left:50%;
-
-transform:
-translateX(-50%)
-rotate(180deg);
-
-}
-
-
-
-.seat-right{
-
-right:4vh;
-
-top:50%;
-
-transform:
-translateY(-50%)
-rotate(-90deg);
-
-}
-
-
-
-.seat-bottom{
-
-bottom:1vh;
-
-left:50%;
-
-transform:
-translateX(-50%);
-
-}
-
-
-
-.seat-left{
-
-left:4vh;
-
-top:50%;
-
-transform:
-translateY(-50%)
-rotate(90deg);
-
-}
-
-.seat-topRight{
-
-top:15%;
-
-right:18%;
-
-transform:
-rotate(-135deg);
-
-}
-
-
-.seat-topLeft{
-
-top:15%;
-
-left:18%;
-
-transform:
-rotate(135deg);
-
-}
-
-
-.seat-bottomRight{
-
-bottom:15%;
-
-right:18%;
-
-transform:
-rotate(-45deg);
-
-}
-
-
-.seat-bottomLeft{
-
-bottom:15%;
-
-left:18%;
-
-transform:
-rotate(45deg);
-
-}
+    .seat-top{
+        top:1vh;
+        left:50%;
+        transform:
+            translateX(-50%)
+            rotate(180deg);
+    }
+    .seat-right{
+        right:4vh;
+        top:50%;
+        transform:
+        translateY(-50%)
+        rotate(-90deg);
+    }
+    .seat-bottom{
+        bottom:1vh;
+        left:50%;
+        transform:
+        translateX(-50%);
+    }
+    .seat-left{
+        left:4vh;
+        top:50%;
+        transform:
+        translateY(-50%)
+        rotate(90deg);
+    }
+    .seat-topRight{
+        top:15%;
+        right:18%;
+        transform:
+        rotate(-135deg);
+    }
+    .seat-topLeft{
+        top:15%;
+        left:18%;
+        transform:
+        rotate(135deg);
+    }
+    .seat-bottomRight{
+        bottom:15%;
+        right:18%;
+        transform:
+        rotate(-45deg);
+    }
+    .seat-bottomLeft{
+        bottom:15%;
+        left:18%;
+        transform:
+        rotate(45deg);
+    }
 
 @media(max-height:800px){
-
     .seat{
-
         height:14vh;
-
     }
-
-
     .time{
-
         font-size:2.5rem;
-
     }
-
-
     button{
-
         padding:6px 25px;
-
     }
-
 }
