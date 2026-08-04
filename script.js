@@ -411,18 +411,23 @@ pauseButton.onclick=()=>{
     !game.paused;
     if(game.paused){
         pauseButton.textContent =
-        "再開";
+        "RESTART";
         centerText.textContent =
-        "一時停止";
+        "PAUSE";
     }else{
         pauseButton.textContent =
-        "一時停止";
-        centerText.textContent =
-        "▶ "+
-        game.players[
-            game.currentPlayer
-        ].name+
-        " のターン";
+        "PAUSE";
+        if(game.state="prepare"){
+            centerText.textContent ="READY";
+        }
+        if(game.state="playing"){
+            centerText.textContent =
+            "▶ "+
+            game.players[
+                game.currentPlayer
+            ].name+
+            " のターン";
+        }
         game.lastTime =
         performance.now();
     }
