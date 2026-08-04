@@ -110,32 +110,6 @@ function createNameInputs(count){
     );
 }
 
-function createSeats(count){
-    board.innerHTML="";
-    let seats =
-        seatLayouts[count];
-        seats.forEach(
-        (seat,index)=>{
-            let div =
-            document.createElement("div");
-            div.className =
-                "seat seat-"+seat;
-            div.innerHTML = `
-                <div class="name">
-                    Player${index+1}
-                </div>
-                <div class="time">
-                    30.000
-                </div>
-                <button>
-                    終了
-                </button>
-            `;
-            board.appendChild(div);
-        }
-    );
-}
-
 playerCount.onchange=()=>{
     let count =
     Number(playerCount.value);
@@ -194,9 +168,6 @@ function createTimerSeats(){
                     <div class="time">
                         ${player.time.toFixed(3)}
                     </div>
-                    <button class="finishButton">
-                        END
-                    </button>
                 </div>
             `;
             board.appendChild(div);
