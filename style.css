@@ -207,10 +207,11 @@ body{
     font-weight:bold;
 }
 .currentTurn{
-    background:#0044aa !important;
-    border:3px solid #66ccff;
+    background:#0058d8;
+    border:4px solid #6fd3ff;
     box-shadow:
-    0 0 20px rgba(0,150,255,0.8);
+        0 0 10px #00aaff,
+        0 0 30px rgba(0,170,255,.5);
     cursor:pointer;
 }
 .currentTurn:active .seatContent{
