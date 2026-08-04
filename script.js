@@ -56,8 +56,8 @@ const seatLayouts = {
     ],
     7:[
         "bottom",
-        "left",
         "bottomLeft",
+        "left",
         "topLeft",
         "topRight",
         "right",
@@ -65,8 +65,8 @@ const seatLayouts = {
     ],
     8:[
         "bottom",
-        "left",
         "bottomLeft",
+        "left",
         "topLeft",
         "top",
         "topRight",
