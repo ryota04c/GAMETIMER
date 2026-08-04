@@ -175,6 +175,12 @@ body{
     display:grid;
     grid-template-rows:28% 72%;
 }
+.nameBar{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:2px solid rgba(255,255,255,.15);
+}
 .name{
     position:absolute;
     top:12px;
@@ -184,6 +190,11 @@ body{
     text-align:center;
     font-size:1.6rem;
     font-weight:bold;
+}
+.timeArea{
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 .time{
     position:absolute;
