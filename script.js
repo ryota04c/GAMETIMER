@@ -24,53 +24,54 @@ const pauseButton =
 // 座席配置
 const seatLayouts = {   
     2:[
-        "top",
-        "bottom"
+        "bottom",
+        "top"
     ],
     3:[
-        "top",
+        "bottom",
+        "left",
         "right",
-        "left"
+        
     ],
     4:[
-        "top",
-        "right",
         "bottom",
-        "left"
+        "left",
+        "top",
+        "right"
     ],
     5:[
-        "top",
-        "topRight",
-        "bottomRight",
+        "bottom",
         "bottomLeft",
-        "left"
+        "topLeft",
+        "topRight",
+        "bottomRight"
     ],
     6:[
+        "bottom",
+        "bottomLeft",
+        "topLeft",
         "top",
         "topRight",
-        "right",
-        "bottomRight",
-        "bottomLeft",
-        "left"
+        "bottomRight"
     ],
     7:[
-        "top",
+        "bottom",
+        "left",
+        "bottomLeft",
+        "topLeft",
         "topRight",
         "right",
-        "bottomRight",
-        "bottom",
-        "bottomLeft",
-        "left"
+        "bottomRight"
     ],
     8:[
+        "bottom",
+        "left",
+        "bottomLeft",
+        "topLeft",
         "top",
         "topRight",
         "right",
-        "bottomRight",
-        "bottom",
-        "bottomLeft",
-        "left",
-        "topLeft"
+        "bottomRight"
     ]
 };
 // 回転
