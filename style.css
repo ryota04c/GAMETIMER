@@ -151,49 +151,42 @@ body{
     position:absolute;
     width:22vw;
     height:16vh;
-    min-width:180px
+    min-width:180px;
     min-height:130px;
     max-width:240px;
     max-height:170px;
     background:#222;
     border-radius:25px;
-    display:flex;
     flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
     font-size:1.8rem;
     transition:
     transform 0.2s,
     background 0.2s;
 }
-.time{
-    font-size:3rem;
+.seatContent{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+.name{
+    position:absolute;
+    top:12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    text-align:center;
+    font-size:1.6rem;
     font-weight:bold;
 }
-button{
-    font-size:1.3rem;
-    padding:10px 40px;
-    border-radius:15px;
-    background:#333;
-    color:white;
-    border:none;
-}
-.finishButton{
-    background:#444;
-    color:#888;
-    opacity:.4;
-    transition:.2s;
-}
-.finishButton:disabled{
-    opacity:0.3;
-}
-.finishButton.active{
-    background:#00bfff;
-    color:white;
-    opacity:1;
-    box-shadow:0 0 15px #00bfff;
-    transform:scale(1.08);
+.time{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:100%;
+    text-align:center;
+    font-size:3rem;OK
+    font-weight:bold;
 }
 .currentTurn{
     transform:scale(1.1);
