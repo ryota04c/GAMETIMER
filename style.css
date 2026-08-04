@@ -159,7 +159,7 @@ body{
     border-radius:25px;
     flex-direction:column;
     font-size:1.8rem;
-    cursor:pointer;
+    cursor:default;
     user-select:none;
     transition:
         background 0.2s;
@@ -196,6 +196,10 @@ body{
     border:3px solid #66ccff;
     box-shadow:
     0 0 20px rgba(0,150,255,0.8);
+    cursor:pointer;
+}
+.currentTurn:active .seatContent{
+    transform:scale(.95);
 }
 .currentTurn .seatContent{
     transform:scale(1.08);
