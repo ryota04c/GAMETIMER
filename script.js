@@ -202,10 +202,9 @@ function createTimerSeats(){
             board.appendChild(div);
             const button =
                 div.querySelector(".finishButton");         
-                button.onclick=()=>{                            
-                    if(index !== game.currentPlayer){
-                        return;
-                    }
+                div.onclick=()=>{
+                    if(game.state !== "playing" ||game.paused) return;
+                    if(index !== game.currentPlayer)return;
                     finishTurn();
                 };
         }
