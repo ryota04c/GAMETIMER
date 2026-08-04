@@ -162,11 +162,15 @@ function createTimerSeats(){
             "seat seat-"+player.seat;
             div.innerHTML=`
                 <div class="seatContent">
-                    <div class="name">
-                        ${player.name}
+                    <div class="nameBar">
+                        <div class="name">
+                            ${player.name}
+                        </div>
                     </div>
-                    <div class="time">
-                        ${player.time.toFixed(3)}
+                    <div class="timeArea">
+                        <div class="time">
+                            ${player.time.toFixed(3)}
+                        </div>
                     </div>
                 </div>
             `;
@@ -213,7 +217,7 @@ function updateTimer(now){
         Math.ceil(
             game.prepareRemaining / 1000
         );
-        if(second <= 5&&second > 0&&second !== game.lastPrepareSecond){
+        if(second <= 3&&second > 0&&second !== game.lastPrepareSecond){
             game.lastPrepareSecond = second;
             playWarningSound();
         }
@@ -250,12 +254,11 @@ function updateTimer(now){
         centerTimer.textContent = "";
         let second =
             Math.ceil(player.time); 
-        if(second<=10&&second!==game.lastSecond){
+        if(second<=3&&second!==game.lastSecond){
             game.lastSecond=second;
             playWarningSound();
         }
     }
-
     updatePlayerDisplay();
     requestAnimationFrame(updateTimer);
 }
@@ -295,7 +298,7 @@ function updatePlayerDisplay(){
                 .classList.add(
                     "danger"
                 );
-            }else if(player.time<=10){
+            }else if(player.time<=7){
                 timeElement
                 .classList.add(
                     "warning"
