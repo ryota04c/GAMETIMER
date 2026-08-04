@@ -170,12 +170,17 @@ function createTimerSeats(){
                     </div>
                 </div>
             `;
-            board.appendChild(div);
-            const button =
-                div.querySelector(".finishButton");         
+            board.appendChild(div);        
                 div.onclick=()=>{
                     if(game.state !== "playing" ||game.paused) return;
-                    if(index !== game.currentPlayer)return;
+                    if(index !== game.currentPlayer){
+                        div.animate([
+                            {transform:"scale(1)"},
+                            {transform:"scale(.95)"},
+                            {transform:"scale(1)"}
+                        ],{ duration:120});              
+                        return;
+                    }
                     finishTurn();
                 };
         }
@@ -300,23 +305,6 @@ function updatePlayerDisplay(){
              element.classList.remove(
                 "currentTurn"
             );
-        }
-        const button =
-            element.querySelector(
-                ".finishButton"
-            );
-        if(
-            index===game.currentPlayer &&
-            game.state==="playing" &&
-            !game.paused
-        ){
-            button.disabled=false;
-            button.classList.add("active");
-        
-        }else{
-            button.disabled=true;
-            button.classList.remove("active");
-        
         }
     });
 }
