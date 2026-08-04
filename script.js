@@ -405,8 +405,9 @@ function nextPlayer(){
 }
 //一時停止処理
 pauseButton.onclick=()=>{
-    if(game.state==="end")
+    if(game.state==="end"){
         return;
+    }
     game.paused =
     !game.paused;
     if(game.paused){
@@ -417,10 +418,9 @@ pauseButton.onclick=()=>{
     }else{
         pauseButton.textContent =
         "PAUSE";
-        if(game.state="prepare"){
+        if(game.state==="prepare"){
             centerText.textContent ="READY";
-        }
-        if(game.state="playing"){
+        }else if(game.state==="playing"){
             centerText.textContent =
             "▶ "+
             game.players[
