@@ -389,6 +389,8 @@ function nextPlayer(){
         " WIN";   
         centerTimer.textContent =
         "GAME END";
+        pauseButton.textContent =
+        "END";
         return;
         // アニメーション
         centerText.classList.remove("turnAnimation");
@@ -407,6 +409,7 @@ function nextPlayer(){
 //一時停止処理
 pauseButton.onclick=()=>{
     if(game.state==="end"){
+        location.reload();
         return;
     }
     game.paused =
