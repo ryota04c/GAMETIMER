@@ -13,6 +13,9 @@ const game={
     holdStart:null,
     holdDuration:1000,
     holdPlayer:null,
+    holdingDiv:null,
+    holdTimer:null,
+    holdInterval:null,
     rankTop:1,
     rankBottom:null
 };
@@ -187,24 +190,21 @@ function createTimerSeats(){
                 </div>
             `;
             board.appendChild(div);        
-                let holdTimer;
-                let holdInterval;
-                div.onpointerdown=()=>{               
-                    if(game.state!=="playing" ||game.paused)
-                        return;                
+                div.onpointerdown=(e)=>{
+                    if(game.state!=="playing" || game.paused)
+                        return;         
                     if(index!==game.currentPlayer)
-                        return;              
+                        return;
                     game.holding=true;
                     game.holdPlayer=index;
-                    game.holdStart=performance.now();                
+                    game.holdingDiv=div;
                     div.classList.add("holding");
-                    game.paused=true;       
+                    game.paused=true;
                     const progress =
                     div.querySelector(".holdProgress");
                     let start =
-                        performance.now();
-                    
-                    holdInterval=setInterval(()=>{
+                    performance.now();
+                    game.holdInterval=setInterval(()=>{
                         let elapsed =
                         performance.now()-start;
                         let percent =
@@ -215,41 +215,47 @@ function createTimerSeats(){
                         progress.style.width =
                         percent+"%";
                     },20);
-                    holdTimer=setTimeout(()=>{
-                        clearInterval(holdInterval);
+                    game.holdTimer=setTimeout(()=>{
+                        clearInterval(game.holdInterval);
                         progress.style.width="0%";
                         div.classList.remove("holding");
                         game.holding=false;
                         game.paused=false;
                         finishHold(index);
                     },game.holdDuration);
-                };
-                document.addEventListener(
-                    "pointerup",
-                    cancelHold
-                );
                 
-                document.addEventListener(
-                    "pointercancel",
-                    cancelHold
-                );
+                };
         }
     );
 }
+document.addEventListener(
+    "pointerup",
+    cancelHold
+);
+document.addEventListener(
+    "pointercancel",
+    cancelHold
+);
 //ホールド終了処理
 function cancelHold(){
     if(!game.holding)
         return;
-    clearTimeout(holdTimer);
-    clearInterval(holdInterval);
-    const progress =
-    div.querySelector(".holdProgress");
-    progress.style.width="0%";
-    div.classList.remove("holding");
+    clearTimeout(game.holdTimer);
+    clearInterval(game.holdInterval);
+    if(game.holdingDiv){
+        const progress =
+            game.holdingDiv
+            .querySelector(".holdProgress");
+        progress.style.width="0%";
+        game.holdingDiv
+        .classList.remove("holding");
+    }
     game.holding=false;
+    game.holdingDiv=null;
     if(game.state==="playing"){
         game.paused=false;
-        game.lastTime=performance.now();
+        game.lastTime =
+        performance.now();
     }
 }
 //上がり処理
