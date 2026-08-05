@@ -17,7 +17,8 @@ const game={
     holdTimer:null,
     holdInterval:null,
     rankTop:1,
-    rankBottom:null
+    rankBottom:null,
+    selectedLosePlayer:null
 };
 const board =
     document.getElementById("board");
@@ -37,6 +38,8 @@ const confirmYes =
     document.getElementById("confirmYes");
 const confirmNo =
     document.getElementById("confirmNo");
+const loseSelectArea =
+    document.getElementById("loseSelectArea");
 
 // 座席配置
 const seatLayouts = {   
@@ -509,27 +512,55 @@ forceLoseButton.onclick=()=>{
     if(game.state!=="playing")
         return;
     game.paused=true;
-    pauseButton.disabled=true;
-    forceLoseButton.disabled=true;
+    game.selectedLosePlayer=null;
+    createLoseSelect();
     confirmScreen.style.display="block";
 };
 confirmNo.onclick=()=>{
     confirmScreen.style.display="none";
     game.paused=false;
-    pauseButton.disabled=false;
-    forceLoseButton.disabled=false;
+    game.selectedLosePlayer=null;
     game.lastTime =
         performance.now();
 };
 confirmYes.onclick=()=>{
+    if(game.selectedLosePlayer===null)
+        return;
     confirmScreen.style.display="none";
     game.paused=false;
-    pauseButton.disabled=false;
-    forceLoseButton.disabled=false;
     forceLose(
-        game.currentPlayer
+        game.selectedLosePlayer
     );
+    game.selectedLosePlayer=null;
+
 };
+function createLoseSelect(){
+    loseSelectArea.innerHTML="";
+    game.players.forEach((player,index)=>{
+        if(!player.alive)
+            return;
+        const button =
+        document.createElement("button");
+        button.textContent =
+            player.name;
+        button.onclick=()=>{
+            game.selectedLosePlayer=index;
+            document
+            .querySelectorAll(
+                "#loseSelectArea button"
+            )
+            .forEach(btn=>{
+                btn.classList.remove(
+                    "selected"
+                );
+            });
+            button.classList.add(
+                "selected"
+            );
+        };
+        loseSelectArea.appendChild(button);
+    });
+}
 function forceLose(index){
     const player =
         game.players[index];
@@ -554,6 +585,10 @@ function forceLose(index){
         setTimeout(()=>{
             nextPlayer();
         },800);
+    }else{
+        //現在ターンでないなら続行
+        game.lastTime =
+            performance.now();
     }
 }
 function showRanking(){
