@@ -252,7 +252,17 @@ body{
 .eliminated .seatContent{
     transform:scale(.95);
 }
-
+.finished{
+    background:#008000 !important;
+    border:3px solid #66ff66;
+    color:white;
+    box-shadow:
+        0 0 15px rgba(0,255,0,.5);
+    opacity:.9;
+}
+.finished .seatContent{
+    transform:scale(.95);
+}
 /* 座席位置 */
     .seat-top{
         top:3vh;
