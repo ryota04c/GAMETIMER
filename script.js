@@ -512,27 +512,29 @@ forceLoseButton.onclick=()=>{
     if(game.state!=="playing")
         return;
     game.paused=true;
-    game.selectedLosePlayer=null;
     createLoseSelect();
     confirmScreen.style.display="block";
+    loseSelectScreen.style.display="block";
 };
-confirmNo.onclick=()=>{
+loseYes.onclick=()=>{
     confirmScreen.style.display="none";
-    game.paused=false;
-    game.selectedLosePlayer=null;
-    game.lastTime =
-        performance.now();
-};
-confirmYes.onclick=()=>{
-    if(game.selectedLosePlayer===null)
-        return;
-    confirmScreen.style.display="none";
+    loseConfirmScreen.style.display="none";
     game.paused=false;
     forceLose(
         game.selectedLosePlayer
     );
     game.selectedLosePlayer=null;
-
+};
+loseNo.onclick=()=>{
+    loseConfirmScreen.style.display="none";
+    loseSelectScreen.style.display="block";
+};
+loseCancel.onclick=()=>{
+    confirmScreen.style.display="none";
+    game.paused=false;
+    game.selectedLosePlayer=null;
+    game.lastTime=
+    performance.now();
 };
 function createLoseSelect(){
     loseSelectArea.innerHTML="";
@@ -542,21 +544,14 @@ function createLoseSelect(){
         const button =
         document.createElement("button");
         button.textContent =
-            player.name;
+        player.name;
         button.onclick=()=>{
             game.selectedLosePlayer=index;
-            document
-            .querySelectorAll(
-                "#loseSelectArea button"
-            )
-            .forEach(btn=>{
-                btn.classList.remove(
-                    "selected"
-                );
-            });
-            button.classList.add(
-                "selected"
-            );
+            loseSelectScreen.style.display="none";
+            loseConfirmScreen.style.display="block";
+            loseConfirmText.textContent =
+            player.name+
+            "を敗北させますか？";
         };
         loseSelectArea.appendChild(button);
     });
