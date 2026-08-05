@@ -150,6 +150,7 @@ startButton.onclick=()=>{
             });
         }
     );
+    forceLoseButton.style.display="none";
     game.rankTop = 1;
     game.rankBottom = game.players.length;
     game.prepareTime =Number(prepareTime.value);
@@ -321,6 +322,7 @@ function updateTimer(now){
             game.state="playing";
             game.currentPlayer=0;
             game.players[0].running=true;
+            forceLoseButton.style.display="block";
             centerText.textContent =
              "▶ "+game.players[0].name+" のターン";
             centerTimer.textContent="";
@@ -479,6 +481,7 @@ function nextPlayer(){
         lastPlayer.rank =
             game.rankTop;
         game.state="end";
+        forceLoseButton.style.display="none";
         showRanking();
         // アニメーション
         centerText.classList.remove("turnAnimation");
