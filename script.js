@@ -189,6 +189,7 @@ function createTimerSeats(){
             `;
             board.appendChild(div);        
                 let holdTimer;
+                let holdInterval;
                 div.onpointerdown=()=>{               
                     if(game.state!=="playing" ||game.paused)
                         return;                
@@ -201,29 +202,32 @@ function createTimerSeats(){
                     game.paused=true;       
                     const progress =
                     div.querySelector(".holdProgress");
-                    holdTimer=setInterval(()=>{                
+                    let start =
+                        performance.now();
+                    
+                    holdInterval=setInterval(()=>{
                         let elapsed =
-                            performance.now()
-                            -game.holdStart;                
+                        performance.now()-start;
                         let percent =
-                            Math.min(
-                                elapsed/game.holdDuration*100,
-                                100
-                            );
-                        progress.style.width=
-                            percent+"%";
-                        if(percent>=100){                
-                            clearInterval(holdTimer);                
-                            progress.style.width="0%";                
-                            div.classList.remove("holding");                
-                            game.holding=false;             
-                            game.paused=false;                        
-                            finishHold(index);
-                        }
+                        Math.min(
+                            elapsed/game.holdDuration*100,
+                            100
+                        );
+                        progress.style.width =
+                        percent+"%";
                     },20);
+                    holdTimer=setTimeout(()=>{
+                        clearInterval(holdInterval);
+                        progress.style.width="0%";
+                        div.classList.remove("holding");
+                        game.holding=false;
+                        game.paused=false;
+                        finishHold(index);
+                    },game.holdDuration);
                 };
                 div.onpointerup=cancelHold;
                 div.onpointerleave=cancelHold;
+                div.onpointercancel=cancelHold;
         }
     );
 }
@@ -231,13 +235,14 @@ function createTimerSeats(){
 function cancelHold(){
     if(!game.holding)
         return;
-    clearInterval(holdTimer);
-    game.holding=false;
-    game.paused=false;
+    clearTimeout(holdTimer);
+    clearInterval(holdInterval);
     const progress =
         div.querySelector(".holdProgress");
     progress.style.width="0%";
     div.classList.remove("holding");
+    game.holding=false;
+    game.paused=false;
     game.lastTime =
         performance.now();
 }
