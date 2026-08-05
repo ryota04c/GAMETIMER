@@ -178,6 +178,7 @@ body{
     height:100%;
     display:grid;
     grid-template-rows:28% 44% 28%;
+    pointer-events:none;
 }
 .nameBar{
     display:flex;
@@ -211,9 +212,9 @@ body{
 }
 .holdBar{
     position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
+    bottom:10%;
+    left:10%;
+    width:80%;
     height:10px;
     overflow:hidden;
     opacity:0;
