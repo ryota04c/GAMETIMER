@@ -12,7 +12,9 @@ const game={
     holding:false,
     holdStart:null,
     holdDuration:1000,
-    holdPlayer:null
+    holdPlayer:null,
+    rankTop:1,
+    rankBottom:null
 };
 const board =
     document.getElementById("board");
@@ -129,6 +131,8 @@ startButton.onclick=()=>{
     document.querySelectorAll(".nameInput");
     let seats =
     seatLayouts[Number(playerCount.value)];
+    game.rankTop = 1;
+    game.rankBottom = game.players.length;
     game.players=[];
     seats.forEach(
         (seat,index)=>{
@@ -138,7 +142,8 @@ startButton.onclick=()=>{
                 time:
                 Number(playerTime.value),                    
                 running:false,
-                alive:true
+                alive:true,
+                rank:null
             });
         }
     );
@@ -242,6 +247,8 @@ function finishHold(index){
     game.players[index];
     player.alive=false;
     player.running=false;
+    player.rank = game.rankTop;
+    game.rankTop++;
     const card =
         document.querySelectorAll(".seat")
         [index];
@@ -250,7 +257,7 @@ function finishHold(index){
     );
     card.querySelector(".time")
     .textContent=
-        "CLEAR";
+        player.rank+"位";
     centerText.textContent =
         player.name+" 上がり";
     setTimeout(()=>{
@@ -391,6 +398,8 @@ function timeOver(){
     ];
     player.running=false;
     player.alive=false;
+    player.rank = game.rankBottom;
+    game.rankBottom--;
     const card =
     document.querySelectorAll(".seat")[ game.currentPlayer];
     card.classList.add("timeOut");
@@ -411,7 +420,7 @@ function timeOver(){
         );
         card
         .querySelector(".time")
-        .textContent="LOSE";
+        .textContent=player.rank+"位";
         nextPlayer();
     },1000);
 }
@@ -445,14 +454,12 @@ function nextPlayer(){
         p=>p.alive
     );
     if(alivePlayers.length===1){
+        const lastPlayer =
+            alivePlayers[0];
+        lastPlayer.rank =
+            game.rankTop;
         game.state="end";
-        centerText.textContent =
-        alivePlayers[0].name+
-        " WIN";   
-        centerTimer.textContent =
-        "GAME END";
-        pauseButton.textContent =
-        "END";
+        showRanking();
         // アニメーション
         centerText.classList.remove("turnAnimation");
         void centerText.offsetWidth;   // アニメーションをリセット
@@ -467,6 +474,22 @@ function nextPlayer(){
         void centerText.offsetWidth;   // アニメーションをリセット
         centerText.classList.add("turnAnimation");
     }
+}
+function showRanking(){
+    const ranking =
+    [...game.players]
+    .sort((a,b)=>a.rank-b.rank);
+    centerText.classList.add("ranking");
+    centerText.innerHTML =
+    ranking.map(
+        player =>
+        `${player.rank}位 ${player.name}`
+    )
+    .join("<br>");
+    centerTimer.textContent =
+    "GAME END";
+    pauseButton.textContent =
+    "END";
 }
 //一時停止処理
 pauseButton.onclick=()=>{
