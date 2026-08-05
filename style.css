@@ -136,6 +136,10 @@ body{
     text-align:center;
     transition:all .25s;
 }
+.ranking{
+    font-size:2rem;
+    line-height:1.5;
+}
 #centerTimer{
     font-size:4.5rem;
     font-weight:bold;
