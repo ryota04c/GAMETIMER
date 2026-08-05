@@ -598,7 +598,7 @@ function showRanking(){
     )
     .join("<br>");
     centerTimer.textContent =
-    "GAME END";
+    "";
     pauseButton.textContent =
     "END";
 }
