@@ -256,6 +256,7 @@ function cancelHold(){
         game.paused=false;
         game.lastTime =
         performance.now();
+         nextPlayer();
     }
 }
 //上がり処理
