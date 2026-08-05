@@ -8,7 +8,11 @@ const game={
     lastTime:null,
     paused:false,
     lastSecond:-1,
-    lastPrepareSecond:-1
+    lastPrepareSecond:-1,
+    holding:false,
+    holdStart:null,
+    holdDuration:1000,
+    holdPlayer:null
 };
 const board =
     document.getElementById("board");
@@ -179,22 +183,80 @@ function createTimerSeats(){
                 </div>
             `;
             board.appendChild(div);        
-                div.onclick=()=>{
-                    if(game.state !== "playing" ||game.paused) return;
-                    if(index !== game.currentPlayer){
-                        div.animate([
-                            {transform:"scale(1)"},
-                            {transform:"scale(.95)"},
-                            {transform:"scale(1)"}
-                        ],{ duration:120});              
-                        return;
-                    }
-                    finishTurn();
+                let holdTimer;
+                div.onpointerdown=()=>{               
+                    if(game.state!=="playing" ||game.paused)
+                        return;                
+                    if(index!==game.currentPlayer)
+                        return;              
+                    game.holding=true;
+                    game.holdPlayer=index;
+                    game.holdStart=performance.now();                
+                    div.classList.add("holding");
+                    game.paused=true;       
+                    const progress =
+                    div.querySelector(".holdProgress");
+                    holdTimer=setInterval(()=>{                
+                        let elapsed =
+                            performance.now()
+                            -game.holdStart;                
+                        let percent =
+                            Math.min(
+                                elapsed/game.holdDuration*100,
+                                100
+                            );
+                        progress.style.width=
+                            percent+"%";
+                        if(percent>=100){                
+                            clearInterval(holdTimer);                
+                            progress.style.width="0%";                
+                            div.classList.remove("holding");                
+                            game.holding=false;             
+                            game.paused=false;                        
+                            finishHold(index);
+                        }
+                    },20);
                 };
+                div.onpointerup=cancelHold;
+                div.onpointerleave=cancelHold;
         }
     );
 }
-
+//ホールド終了処理
+function cancelHold(){
+    if(!game.holding)
+        return;
+    clearInterval(holdTimer);
+    game.holding=false;
+    game.paused=false;
+    const progress =
+        div.querySelector(".holdProgress");
+    progress.style.width="0%";
+    div.classList.remove("holding");
+    game.lastTime =
+        performance.now();
+}
+//上がり処理
+function finishHold(index){
+    const player =
+    game.players[index];
+    player.alive=false;
+    player.running=false;
+    const card =
+        document.querySelectorAll(".seat")
+        [index];
+    card.classList.add(
+        "eliminated"
+    );
+    card.querySelector(".time")
+    .textContent=
+        "CLEAR";
+    centerText.textContent =
+        player.name+" 上がり";
+    setTimeout(()=>{
+        nextPlayer();
+    },800);
+}
 //タイマー処理
 function startPrepareTimer(){
     game.state="prepare";
@@ -330,10 +392,7 @@ function timeOver(){
     player.running=false;
     player.alive=false;
     const card =
-    document.querySelectorAll(".seat")
-    [
-        game.currentPlayer
-    ];
+    document.querySelectorAll(".seat")[ game.currentPlayer];
     card.classList.add("timeOut");
     
     card
@@ -394,11 +453,11 @@ function nextPlayer(){
         "GAME END";
         pauseButton.textContent =
         "END";
-        return;
         // アニメーション
         centerText.classList.remove("turnAnimation");
         void centerText.offsetWidth;   // アニメーションをリセット
         centerText.classList.add("turnAnimation");
+        return;
     }else{
         // 中央表示更新
         centerText.textContent =
@@ -439,10 +498,11 @@ pauseButton.onclick=()=>{
         performance.now();
     }
 };
+
+const audioCtx=new AudioContext();
 //時間切れ音声
 function playTimeOverSound(){
-    const ctx =
-        new AudioContext();
+    const ctx =audioCtx;
     const osc =
         ctx.createOscillator();
     osc.frequency.value=880;
@@ -456,8 +516,7 @@ function playTimeOverSound(){
 }
 //警告音
 function playWarningSound(){
-    const ctx =
-        new AudioContext();
+    const ctx =audioCtx;
     const osc =
         ctx.createOscillator();
     osc.frequency.value=440;
@@ -471,8 +530,7 @@ function playWarningSound(){
 }
 //開始音
 function playStartSound(){
-    const ctx =
-        new AudioContext();
+    const ctx =audioCtx;
     const osc =
         ctx.createOscillator();
     const gain =
