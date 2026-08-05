@@ -131,8 +131,6 @@ startButton.onclick=()=>{
     document.querySelectorAll(".nameInput");
     let seats =
     seatLayouts[Number(playerCount.value)];
-    game.rankTop = 1;
-    game.rankBottom = game.players.length;
     game.players=[];
     seats.forEach(
         (seat,index)=>{
@@ -147,8 +145,9 @@ startButton.onclick=()=>{
             });
         }
     );
-    game.prepareTime =
-    Number(prepareTime.value);
+    game.rankTop = 1;
+    game.rankBottom = game.players.length;
+    game.prepareTime =Number(prepareTime.value);
     // 設定画面非表示
     document
     .getElementById("settingScreen")
@@ -225,9 +224,15 @@ function createTimerSeats(){
                         finishHold(index);
                     },game.holdDuration);
                 };
-                div.onpointerup=cancelHold;
-                div.onpointerleave=cancelHold;
-                div.onpointercancel=cancelHold;
+                document.addEventListener(
+                    "pointerup",
+                    cancelHold
+                );
+                
+                document.addEventListener(
+                    "pointercancel",
+                    cancelHold
+                );
         }
     );
 }
@@ -238,13 +243,14 @@ function cancelHold(){
     clearTimeout(holdTimer);
     clearInterval(holdInterval);
     const progress =
-        div.querySelector(".holdProgress");
+    div.querySelector(".holdProgress");
     progress.style.width="0%";
     div.classList.remove("holding");
     game.holding=false;
-    game.paused=false;
-    game.lastTime =
-        performance.now();
+    if(game.state==="playing"){
+        game.paused=false;
+        game.lastTime=performance.now();
+    }
 }
 //上がり処理
 function finishHold(index){
