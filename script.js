@@ -246,7 +246,7 @@ function finishHold(index){
         document.querySelectorAll(".seat")
         [index];
     card.classList.add(
-        "eliminated"
+        "finished"
     );
     card.querySelector(".time")
     .textContent=
