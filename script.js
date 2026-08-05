@@ -173,6 +173,9 @@ function createTimerSeats(){
                             ${player.time.toFixed(3)}
                         </div>
                     </div>
+                    <div class="holdBar">
+                        <div class="holdProgress"></div>               
+                    </div>
                 </div>
             `;
             board.appendChild(div);        
