@@ -149,7 +149,36 @@ body{
     font-size:1.5rem;
     padding:10px 50px;
 }
+#forceLoseButton{
+    display:none;
+    margin-top:10px;
+    font-size:1.3rem;
+    padding:10px 40px;
+    background:#c00000;
+    color:white;
+    border:none;
+    border-radius:10px;
+}
+#confirmScreen{
+    display:none;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:
+    translate(-50%,-50%);
 
+    background:#222;
+    padding:30px;
+    border-radius:20px;
+
+    font-size:2rem;
+    text-align:center;
+}
+#confirmScreen button{
+    margin:15px;
+    font-size:1.5rem;
+    padding:10px 30px;
+}
 /* 座席共通 */
 .seat{
     position:absolute;
