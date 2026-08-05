@@ -29,6 +29,8 @@ const playerTime =
     document.getElementById("playerTime");
 const pauseButton =
     document.getElementById("pauseButton");
+const forceLoseButton =
+    document.getElementById("forceLoseButton");
 
 // 座席配置
 const seatLayouts = {   
@@ -491,6 +493,40 @@ function nextPlayer(){
         centerText.classList.remove("turnAnimation");
         void centerText.offsetWidth;   // アニメーションをリセット
         centerText.classList.add("turnAnimation");
+    }
+}
+//強制敗北処理
+forceLoseButton.onclick=()=>{
+    if(game.state!=="playing")
+        return;
+    forceLose(
+        game.currentPlayer
+    );
+};
+function forceLose(index){
+    const player =
+        game.players[index];
+    if(!player.alive)
+        return;
+    player.alive=false;
+    // 下位から順位付け
+    player.rank =
+        game.rankBottom;
+    game.rankBottom--;
+    player.running=false;
+    const card =
+        document.querySelectorAll(".seat")
+        [index];
+    card.classList.add(
+        "eliminated"
+    );
+    card.querySelector(".time")
+        .textContent=player.rank+"位";
+    // 現在ターンなら次へ
+    if(index===game.currentPlayer){
+        setTimeout(()=>{
+            nextPlayer();
+        },800);
     }
 }
 function showRanking(){
