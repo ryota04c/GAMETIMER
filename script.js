@@ -31,6 +31,12 @@ const pauseButton =
     document.getElementById("pauseButton");
 const forceLoseButton =
     document.getElementById("forceLoseButton");
+const confirmScreen =
+    document.getElementById("confirmScreen");
+const confirmYes =
+    document.getElementById("confirmYes");
+const confirmNo =
+    document.getElementById("confirmNo");
 
 // 座席配置
 const seatLayouts = {   
@@ -502,6 +508,24 @@ function nextPlayer(){
 forceLoseButton.onclick=()=>{
     if(game.state!=="playing")
         return;
+    game.paused=true;
+    pauseButton.disabled=true;
+    forceLoseButton.disabled=true;
+    confirmScreen.style.display="block";
+};
+confirmNo.onclick=()=>{
+    confirmScreen.style.display="none";
+    game.paused=false;
+    pauseButton.disabled=false;
+    forceLoseButton.disabled=false;
+    game.lastTime =
+        performance.now();
+};
+confirmYes.onclick=()=>{
+    confirmScreen.style.display="none";
+    game.paused=false;
+    pauseButton.disabled=false;
+    forceLoseButton.disabled=false;
     forceLose(
         game.currentPlayer
     );
