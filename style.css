@@ -152,6 +152,8 @@ body{
 #forceLoseButton{
     display:none;
     margin-top:10px;
+    left:50%;
+    transform:translateX(-50%);
     font-size:1.3rem;
     padding:10px 40px;
     background:#c00000;
@@ -178,6 +180,12 @@ body{
     margin:15px;
     font-size:1.5rem;
     padding:10px 30px;
+}
+#loseSelectScreen{
+    display:none
+}
+#loseConfirmScreen{
+    display:none;
 }
 /* 座席共通 */
 .seat{
